@@ -4,25 +4,25 @@ Core for bots. Many functions.
 
 ## functions
 
-### - [ ] news apis
+- [ ] news apis
 
 ```markdown
 /news <search>
 ```
 
-### - [ ] weather apis
+- [ ] weather apis
 
 ```markdown
 /weather <city/region>
 ```
 
-### - [ ] delivers apis
+- [ ] delivers apis
 
 ```markdown
 /ifood <flavor>
 ```
 
-### - [ ] custom apis
+- [ ] custom apis
 
 ```markdown
 /g1 <search>
