@@ -6,13 +6,18 @@ const getToday = () => {
   return `${year}-${month}-${day}`
 }
 
-module.exports = {
+const news_api = {
   v2: {
     everything: async ({ q, from = getToday(), sortBy = 'popularity' } = {}) => {
       const url = `https://newsapi.org/v2/everything?q=${q}&from=${from}&sortBy=${sortBy}&apiKey=${process.env.NEWS_API_KEY}`
       const res = await fetch(url)
       const data = await res.json()
       return data.articles?.map(article => article.title).join('\n')
+    },
+    everything_string: async ({ q, from = getToday(), sortBy = 'popularity' } = {}) => {
+      return await news_api.v2.everything({ q, from, sortBy }).then(articles => articles || 'No articles found').catch(() => 'Error fetching news')
     }
   }
 }
+
+module.exports = news_api
