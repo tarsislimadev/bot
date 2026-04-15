@@ -2,6 +2,12 @@
 
 Core for bots. Many functions.
 
+## run
+
+```bash
+docker run -it --rm --net host -e NEWS_API_KEY=<key>   tmvdl/ai:bot
+```
+
 ## functions
 
 - [ ] news apis
