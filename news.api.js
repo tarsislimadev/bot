@@ -1,22 +1,12 @@
-const getToday = () => {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
+const { request } = require('./utils/http.util.js')
+
+const { get_today } = require('./utils/date.util.js')
 
 const news_api = {
   v2: {
-    everything: async ({ q, from = getToday(), sortBy = 'popularity' } = {}) => {
-      const url = `https://newsapi.org/v2/everything?q=${q}&from=${from}&sortBy=${sortBy}&apiKey=${process.env.NEWS_API_KEY}`
-      const res = await fetch(url)
-      const data = await res.json()
-      return data.articles?.map(article => article.title).join('\n')
-    },
-    everything_string: async ({ q, from = getToday(), sortBy = 'popularity' } = {}) => {
-      return await news_api.v2.everything({ q, from, sortBy }).then(articles => articles || 'No articles found').catch(() => 'Error fetching news')
-    }
+    everything: ({ q, from = get_today(), sortBy = 'popularity' } = {}) =>
+      request({ url: `https://newsapi.org/v2/everything?q=${q}&from=${from}&sortBy=${sortBy}&apiKey=${process.env.NEWS_API_KEY}` }),
+    everything_string: async ({ q, from = get_today(), sortBy = 'popularity' } = {}) => await news_api.v2.everything({ q, from, sortBy }).then(({ articles }) => articles?.map(article => `${article.title} - ${article.url}`).join('\n'))
   }
 }
 
