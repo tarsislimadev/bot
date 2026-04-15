@@ -1,0 +1,9 @@
+services:
+  bot:
+    image: tmvdl/ai:bot
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+      - NEWS_API_KEY=
