@@ -1,4 +1,4 @@
-const { request } = require('./utils/http.util.js')
+const { request } = require('../utils/http.util.js')
 
 const mercadobitcoin = {
   v4: {

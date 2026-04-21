@@ -1,6 +1,6 @@
-const { request } = require('./utils/http.util.js')
+const { request } = require('../utils/http.util.js')
 
-const { get_today } = require('./utils/date.util.js')
+const { get_today } = require('../utils/date.util.js')
 
 const apiKey = process.env.NEWS_API_KEY
 
